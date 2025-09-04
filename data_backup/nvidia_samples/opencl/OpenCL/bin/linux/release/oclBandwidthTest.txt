@@ -1,0 +1,20 @@
+./oclBandwidthTest Starting...
+
+Running on...
+
+NVIDIA GeForce RTX 2080 Ti
+
+Quick Mode
+
+Host to Device Bandwidth, 1 Device(s), Paged memory, direct access
+   Transfer Size (Bytes)	Bandwidth(MB/s)
+   33554432			9559.9
+
+Device to Host Bandwidth, 1 Device(s), Paged memory, direct access
+   Transfer Size (Bytes)	Bandwidth(MB/s)
+   33554432			6234.2
+
+Device to Device Bandwidth, 1 Device(s)
+   Transfer Size (Bytes)	Bandwidth(MB/s)
+   33554432			477218.6
+

@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/deviceQuery.dir/deviceQuery.cpp.o -o deviceQuery  -Wl,-rpath,/home/erel.kaplan/miniforge3/envs/atca_proj/lib /home/erel.kaplan/miniforge3/envs/atca_proj/lib/libcudart.so -lpthread -ldl /usr/lib/x86_64-linux-gnu/librt.so

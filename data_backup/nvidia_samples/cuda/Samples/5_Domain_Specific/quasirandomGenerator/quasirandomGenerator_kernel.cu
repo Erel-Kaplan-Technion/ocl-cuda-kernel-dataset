@@ -1,0 +1,117 @@
+#ifndef QUASIRANDOMGENERATOR_KERNEL_CUH
+#define QUASIRANDOMGENERATOR_KERNEL_CUH
+
+#include <helper_cuda.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "quasirandomGenerator_common.h"
+
+#define MUL(a, b) __umul24(a, b)
+
+static __constant__ unsigned int c_Table[QRNG_DIMENSIONS][QRNG_RESOLUTION];
+
+static __global__ void quasirandomGeneratorKernel(float *d_Output, unsigned int seed, unsigned int N)
+{
+    unsigned int *dimBase = &c_Table[threadIdx.y][0];
+    unsigned int  tid     = MUL(blockDim.x, blockIdx.x) + threadIdx.x;
+    unsigned int  threadN = MUL(blockDim.x, gridDim.x);
+
+    for (unsigned int pos = tid; pos < N; pos += threadN) {
+        unsigned int result = 0;
+        unsigned int data   = seed + pos;
+
+        for (int bit = 0; bit < QRNG_RESOLUTION; bit++, data >>= 1)
+            if (data & 1) {
+                result ^= dimBase[bit];
+            }
+
+        d_Output[MUL(threadIdx.y, N) + pos] = (float)(result + 1) * INT_SCALE;
+    }
+}
+
+extern "C" void initTableGPU(unsigned int tableCPU[QRNG_DIMENSIONS][QRNG_RESOLUTION])
+{
+    checkCudaErrors(cudaMemcpyToSymbol(c_Table, tableCPU, QRNG_DIMENSIONS * QRNG_RESOLUTION * sizeof(unsigned int)));
+}
+
+extern "C" void quasirandomGeneratorGPU(float *d_Output, unsigned int seed, unsigned int N)
+{
+    dim3 threads(128, QRNG_DIMENSIONS);
+    quasirandomGeneratorKernel<<<128, threads>>>(d_Output, seed, N);
+    getLastCudaError("quasirandomGeneratorKernel() execution failed.\n");
+}
+
+__device__ inline float MoroInvCNDgpu(unsigned int x)
+{
+    const float a1 = 2.50662823884f;
+    const float a2 = -18.61500062529f;
+    const float a3 = 41.39119773534f;
+    const float a4 = -25.44106049637f;
+    const float b1 = -8.4735109309f;
+    const float b2 = 23.08336743743f;
+    const float b3 = -21.06224101826f;
+    const float b4 = 3.13082909833f;
+    const float c1 = 0.337475482272615f;
+    const float c2 = 0.976169019091719f;
+    const float c3 = 0.160797971491821f;
+    const float c4 = 2.76438810333863E-02f;
+    const float c5 = 3.8405729373609E-03f;
+    const float c6 = 3.951896511919E-04f;
+    const float c7 = 3.21767881768E-05f;
+    const float c8 = 2.888167364E-07f;
+    const float c9 = 3.960315187E-07f;
+
+    float z;
+
+    bool negate = false;
+
+    if (x >= 0x80000000UL) {
+        x      = 0xffffffffUL - x;
+        negate = true;
+    }
+
+    const float x1 = 1.0f / static_cast<float>(0xffffffffUL);
+    const float x2 = x1 / 2.0f;
+    float       p1 = x * x1 + x2;
+    float p2 = p1 - 0.5f;
+
+    if (p2 > -0.42f) {
+        z = p2 * p2;
+        z = p2 * (((a4 * z + a3) * z + a2) * z + a1) / ((((b4 * z + b3) * z + b2) * z + b1) * z + 1.0f);
+    }
+    else {
+        z = __logf(-__logf(p1));
+        z = -(c1 + z * (c2 + z * (c3 + z * (c4 + z * (c5 + z * (c6 + z * (c7 + z * (c8 + z * c9))))))));
+    }
+
+    return negate ? -z : z;
+}
+
+static __global__ void inverseCNDKernel(float *d_Output, unsigned int *d_Input, unsigned int pathN)
+{
+    unsigned int distance = ((unsigned int)-1) / (pathN + 1);
+    unsigned int tid      = MUL(blockDim.x, blockIdx.x) + threadIdx.x;
+    unsigned int threadN  = MUL(blockDim.x, gridDim.x);
+
+    if (d_Input) {
+        for (unsigned int pos = tid; pos < pathN; pos += threadN) {
+            unsigned int d = d_Input[pos];
+            d_Output[pos]  = (float)MoroInvCNDgpu(d);
+        }
+    }
+    else {
+        for (unsigned int pos = tid; pos < pathN; pos += threadN) {
+            unsigned int d = (pos + 1) * distance;
+            d_Output[pos]  = (float)MoroInvCNDgpu(d);
+        }
+    }
+}
+
+extern "C" void inverseCNDgpu(float *d_Output, unsigned int *d_Input, unsigned int N)
+{
+    inverseCNDKernel<<<128, 128>>>(d_Output, d_Input, N);
+    getLastCudaError("inverseCNDKernel() execution failed.\n");
+}
+
+#endif

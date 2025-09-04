@@ -1,0 +1,1 @@
+/usr/bin/g++ @CMakeFiles/transpose.dir/objects1.rsp CMakeFiles/transpose.dir/cmake_device_link.o -o transpose @CMakeFiles/transpose.dir/linkLibs.rsp -L"/home/erel.kaplan/miniforge3/envs/atca_proj/lib/stubs" -L"/home/erel.kaplan/miniforge3/envs/atca_proj/lib"

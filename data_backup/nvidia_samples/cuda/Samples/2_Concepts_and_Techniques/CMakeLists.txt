@@ -1,0 +1,4 @@
+add_subdirectory(convolutionSeparable)
+add_subdirectory(histogram)
+add_subdirectory(scalarProd)
+add_subdirectory(scan)

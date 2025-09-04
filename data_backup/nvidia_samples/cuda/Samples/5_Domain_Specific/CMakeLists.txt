@@ -1,0 +1,5 @@
+add_subdirectory(BlackScholes)
+add_subdirectory(FDTD3d)
+add_subdirectory(dxtc)
+add_subdirectory(p2pBandwidthLatencyTest)
+add_subdirectory(quasirandomGenerator)

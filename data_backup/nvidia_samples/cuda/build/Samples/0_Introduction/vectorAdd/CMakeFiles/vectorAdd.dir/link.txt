@@ -1,0 +1,1 @@
+/usr/bin/g++ @CMakeFiles/vectorAdd.dir/objects1.rsp CMakeFiles/vectorAdd.dir/cmake_device_link.o -o vectorAdd @CMakeFiles/vectorAdd.dir/linkLibs.rsp -L"/home/erel.kaplan/miniforge3/envs/atca_proj/lib/stubs" -L"/home/erel.kaplan/miniforge3/envs/atca_proj/lib"

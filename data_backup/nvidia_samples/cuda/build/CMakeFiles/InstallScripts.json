@@ -1,0 +1,30 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/erel.kaplan/atca_proj/data/nvidia_samples/cuda/build/cmake_install.cmake",
+		"/home/erel.kaplan/atca_proj/data/nvidia_samples/cuda/build/Samples/cmake_install.cmake",
+		"/home/erel.kaplan/atca_proj/data/nvidia_samples/cuda/build/Samples/0_Introduction/cmake_install.cmake",
+		"/home/erel.kaplan/atca_proj/data/nvidia_samples/cuda/build/Samples/0_Introduction/matrixMul/cmake_install.cmake",
+		"/home/erel.kaplan/atca_proj/data/nvidia_samples/cuda/build/Samples/0_Introduction/simpleMultiGPU/cmake_install.cmake",
+		"/home/erel.kaplan/atca_proj/data/nvidia_samples/cuda/build/Samples/0_Introduction/vectorAdd/cmake_install.cmake",
+		"/home/erel.kaplan/atca_proj/data/nvidia_samples/cuda/build/Samples/1_Utilities/cmake_install.cmake",
+		"/home/erel.kaplan/atca_proj/data/nvidia_samples/cuda/build/Samples/1_Utilities/deviceQuery/cmake_install.cmake",
+		"/home/erel.kaplan/atca_proj/data/nvidia_samples/cuda/build/Samples/2_Concepts_and_Techniques/cmake_install.cmake",
+		"/home/erel.kaplan/atca_proj/data/nvidia_samples/cuda/build/Samples/2_Concepts_and_Techniques/convolutionSeparable/cmake_install.cmake",
+		"/home/erel.kaplan/atca_proj/data/nvidia_samples/cuda/build/Samples/2_Concepts_and_Techniques/dct8x8/cmake_install.cmake",
+		"/home/erel.kaplan/atca_proj/data/nvidia_samples/cuda/build/Samples/2_Concepts_and_Techniques/histogram/cmake_install.cmake",
+		"/home/erel.kaplan/atca_proj/data/nvidia_samples/cuda/build/Samples/2_Concepts_and_Techniques/scalarProd/cmake_install.cmake",
+		"/home/erel.kaplan/atca_proj/data/nvidia_samples/cuda/build/Samples/2_Concepts_and_Techniques/scan/cmake_install.cmake",
+		"/home/erel.kaplan/atca_proj/data/nvidia_samples/cuda/build/Samples/4_CUDA_Libraries/cmake_install.cmake",
+		"/home/erel.kaplan/atca_proj/data/nvidia_samples/cuda/build/Samples/4_CUDA_Libraries/MersenneTwisterGP11213/cmake_install.cmake",
+		"/home/erel.kaplan/atca_proj/data/nvidia_samples/cuda/build/Samples/5_Domain_Specific/cmake_install.cmake",
+		"/home/erel.kaplan/atca_proj/data/nvidia_samples/cuda/build/Samples/5_Domain_Specific/BlackScholes/cmake_install.cmake",
+		"/home/erel.kaplan/atca_proj/data/nvidia_samples/cuda/build/Samples/5_Domain_Specific/FDTD3d/cmake_install.cmake",
+		"/home/erel.kaplan/atca_proj/data/nvidia_samples/cuda/build/Samples/5_Domain_Specific/dxtc/cmake_install.cmake",
+		"/home/erel.kaplan/atca_proj/data/nvidia_samples/cuda/build/Samples/5_Domain_Specific/p2pBandwidthLatencyTest/cmake_install.cmake",
+		"/home/erel.kaplan/atca_proj/data/nvidia_samples/cuda/build/Samples/5_Domain_Specific/quasirandomGenerator/cmake_install.cmake",
+		"/home/erel.kaplan/atca_proj/data/nvidia_samples/cuda/build/Samples/6_Performance/cmake_install.cmake",
+		"/home/erel.kaplan/atca_proj/data/nvidia_samples/cuda/build/Samples/6_Performance/transpose/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

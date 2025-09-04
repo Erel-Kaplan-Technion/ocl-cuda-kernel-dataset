@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/FDTD3d.dir/src/FDTD3d.cpp.o CMakeFiles/FDTD3d.dir/src/FDTD3dGPU.cu.o CMakeFiles/FDTD3d.dir/src/FDTD3dReference.cpp.o CMakeFiles/FDTD3d.dir/cmake_device_link.o -o FDTD3d   -L/home/erel.kaplan/miniforge3/envs/atca_proj/lib/stubs  -L/home/erel.kaplan/miniforge3/envs/atca_proj/lib  -lcudadevrt -lcudart_static -lrt -lpthread -ldl

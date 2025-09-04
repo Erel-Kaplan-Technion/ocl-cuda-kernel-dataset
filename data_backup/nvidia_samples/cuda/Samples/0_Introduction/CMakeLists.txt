@@ -1,0 +1,3 @@
+add_subdirectory(matrixMul)
+add_subdirectory(simpleMultiGPU)
+add_subdirectory(vectorAdd)

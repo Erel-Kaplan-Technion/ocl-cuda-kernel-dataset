@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/dct8x8.dir/dct8x8.cu.o CMakeFiles/dct8x8.dir/BmpUtil.cpp.o CMakeFiles/dct8x8.dir/DCT8x8_Gold.cpp.o CMakeFiles/dct8x8.dir/cmake_device_link.o -o dct8x8   -L/home/erel.kaplan/miniforge3/envs/atca_proj/lib/stubs  -L/home/erel.kaplan/miniforge3/envs/atca_proj/lib  -lcudadevrt -lcudart_static -lrt -lpthread -ldl
